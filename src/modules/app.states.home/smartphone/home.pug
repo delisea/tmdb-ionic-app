@@ -1,5 +1,21 @@
-ion-view.view-home(
-  view-title="{{ 'STATES.HOME.TITLE' | translate }}",
-  translate-namespace="STATES.HOME")
-  ion-content
-    ng-include(src="'modules/app.states.home/smartphone/content.home.html'")
+ion-view.view-home(view-title="Accueil")
+  ion-header.bar-subheader.item-input-inset
+    label.item-input-wrapper
+      i.icon.ion-ios-search.placeholder-icon
+      input(
+        type="search",
+        ng-model="search.query",
+        placeholder="Rechercher un film")
+    button.button.button-small(
+      ng-disabled="search.query.length < 3",
+      on-tap="homeController.search()") Ok
+  ion-content.has-subheader
+    ion-list
+      ion-item(ng-if="search.results.length < 1")
+        | Aucun résulat
+      ion-item.item-icon-right(
+        ng-repeat="result in search.results",
+        ui-state-params="{ id: result.id }",
+        ui-state="STATE_DETAILS")
+          | {{ result.title }}
+          i.icon.ion-android-film

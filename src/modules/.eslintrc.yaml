@@ -1,4 +1,4 @@
-env:
+nv:
   browser: true
 globals:
   angular: false

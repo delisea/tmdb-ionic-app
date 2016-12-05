@@ -6,6 +6,8 @@
 
   function TestController($scope) {
     var controller = this;
+
+
   }
 
   module.controller('testController', [
